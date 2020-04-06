@@ -1,0 +1,85 @@
+<h3 class="sub-title" style="font-weight:bold;justify-content: unset;">
+  Daftar Pemilih Tetap
+  <button class="btn ml-2 reset" disabled="disabled">Reset</button>
+
+  <style>
+    .li.active {
+      background-color: red;
+      color: #fff;
+    }
+
+    .li {
+      font-size: larger;
+      margin: 30px;
+      border: 1px black solid;
+    }
+  </style>
+
+</h3>
+<button class="btn-mdl btn btn-outline-dark"><i class="fa fa-plus"></i> Tambah Pemilih</button>
+<button class="btn-mdl btn btn-outline-dark"><i class="fa fa-plus"></i> Generate Pemilih</button>
+<div class="navbar navbar-expand-sm navbar-default">
+  <div id="main-menu" class="main-menu collapse navbar-collapse">
+    <ul class="nav navbar-nav">
+      <li class="li active">
+        A
+      </li>
+      <li class="li">b</li>
+      <li class="li">c</li>
+      <li class="li">D</li>
+    </ul>
+  </div>
+</div>
+
+
+<div class="row">
+  <div class="col-4">
+    <div class="list-group list-group-horizontal" id="list-tab" role="tablist">
+      <a class="list-group-item list-group-item-action active" id="list-home-list" data-toggle="list" href="#list-home"
+        role="tab" aria-controls="home">Home</a>
+      <a class="list-group-item list-group-item-action" id="list-profile-list" data-toggle="list" href="#list-profile"
+        role="tab" aria-controls="profile">Profile</a>
+      <a class="list-group-item list-group-item-action" id="list-messages-list" data-toggle="list" href="#list-messages"
+        role="tab" aria-controls="messages">Messages</a>
+      <a class="list-group-item list-group-item-action" id="list-settings-list" data-toggle="list" href="#list-settings"
+        role="tab" aria-controls="settings">Settings</a>
+    </div>
+  </div>
+  <div class="col-8">
+    <div class="tab-content" id="nav-tabContent">
+      <div class="tab-pane fade show active" id="list-home" role="tabpanel" aria-labelledby="list-home-list">..as.</div>
+      <div class="tab-pane fade" id="list-profile" role="tabpanel" aria-labelledby="list-profile-list">...asasa</div>
+      <div class="tab-pane fade" id="list-messages" role="tabpanel" aria-labelledby="list-messages-list">.assss..</div>
+      <div class="tab-pane fade" id="list-settings" role="tabpanel" aria-labelledby="list-settings-list">...</div>
+    </div>
+  </div>
+</div>
+
+<!-- <script>
+  const li = document.getElementById('main-menu'),
+    lis = document.querySelectorAll('.li');
+
+  lis.forEach(list => {
+    list.addEventListener('click', function (e) {
+      e.preventDefault();
+      let active = li.querySelector('.active');
+      if (active) {
+        active.classList.remove('active');
+      }
+      this.classList.add('active');
+    })
+  })
+</script> -->
+
+<script>
+  var liContainer = document.getElementById('main-menu');
+  var li = liContainer.getElementsByClassName('li');
+
+  for (i = 0; i < li.length; i++) {
+    li[i].addEventListener('click', function () {
+      var current = liContainer.getElementsByClassName('active')[0];
+      current.className = current.className.replace(' active', ' ');
+      this.className += ' active';
+    })
+  }
+</script>

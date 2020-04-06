@@ -1,0 +1,983 @@
+body,
+html {
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  text-decoration: none !important;
+}
+
+.animasi {
+  animation-duration: 0.3s;
+  animation-fill-mode: both;
+}
+
+/* Button */
+.btn1 {
+  display: block;
+  width: 100%;
+  height: 50px;
+  border-radius: 25px;
+  outline: none;
+  border: none;
+  background-image: linear-gradient(to right,
+      rgb(255, 174, 0),
+      rgb(255, 197, 72),
+      rgb(255, 174, 0));
+  background-size: 200%;
+  font-size: 1.3rem;
+  font-weight: 200;
+  letter-spacing: 2px;
+  color: #fff;
+  text-transform: uppercase;
+  margin: 1rem 0;
+  cursor: pointer;
+  transition: 0.5s;
+}
+
+.btn1:hover {
+  background-position: right;
+}
+
+/* Akhir Button */
+
+/* Preloader */
+#preloader {
+  width: 100%;
+  height: 100vh;
+  position: fixed;
+  z-index: 9999;
+  background-color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  font-size: x-large;
+  font-weight: 300;
+}
+
+#preloader img {
+  width: 200px;
+  height: auto;
+}
+
+#preloader span::after,
+.loading-suara .teks span::after {
+  content: "";
+  font-weight: unset;
+  animation: linear preloadtext 3s infinite;
+}
+
+/* Akhir Preloader */
+
+/* Body */
+
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: rgb(255, 197, 72);
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: rgb(255, 153, 0);
+}
+
+.biru,
+.gambar-kanan {
+  width: 700px;
+  height: 700px;
+  transform: rotate(24deg);
+  position: fixed;
+}
+
+.biru {
+  border-radius: 70px;
+  background-image: linear-gradient(to right,
+      rgb(17, 180, 255),
+      rgb(0, 26, 37));
+  right: -22em;
+  top: 18em;
+}
+
+.gambar-kanan {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  right: -5em;
+  top: 18em;
+  border-radius: 150px;
+  background-color: rgb(255, 201, 24);
+  animation: muter1 45s linear infinite;
+}
+
+.iki-gambar {
+  transform: rotate(-24deg);
+  width: 124%;
+  height: 124%;
+  background-size: cover;
+  background-image: linear-gradient(90deg,
+      rgb(255, 201, 24),
+      rgba(255, 187, 41, 0.6)),
+    url(../../images/background.png);
+  background-position-x: right;
+  background-position-y: top;
+  animation: muter2 45s linear infinite;
+}
+
+/* Akhir Body */
+
+/* NavBar */
+.navbar {
+  background-color: #fff;
+  border-bottom-left-radius: 50px;
+  border-bottom-right-radius: 50px;
+  box-shadow: rgba(54, 54, 54, 0.8) 6px 6px 30px -15px;
+}
+
+.navbar-brand {
+  flex: 1;
+  align-items: center;
+}
+
+.navbar-brand img {
+  max-height: 40px;
+}
+
+.navbar-nav a {
+  margin-top: auto;
+  margin-left: 10px;
+}
+
+.navbar-nav .fa {
+  font-size: x-large;
+}
+
+.navbar .d-flex {
+  text-align: center;
+  justify-content: stretch;
+  align-items: center;
+}
+
+.judul {
+  text-align: center;
+  flex: 2;
+  transition: all 0.5s;
+}
+
+.nav-kanan {
+  flex: 1;
+}
+
+.waktu {
+  display: block;
+  font-size: 25px;
+  color: green;
+  line-height: 12px;
+}
+
+/* Akhir navBar */
+
+/* Step */
+.steps {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  list-style: none;
+  padding: 0;
+}
+
+.steps li {
+  width: 100%;
+  text-align: center;
+  position: relative;
+}
+
+
+.steps li::before {
+  content: "";
+  position: absolute;
+  z-index: 2;
+  top: 25%;
+  right: 50%;
+  width: 100%;
+  height: 6px;
+  background-color: #ddd;
+  background-image: linear-gradient(to right,
+      rgb(17, 180, 255),
+      rgb(0, 96, 138));
+  background-repeat: no-repeat;
+  background-size: 0%;
+  transition: 5s;
+}
+
+.steps li:first-child::before {
+  content: unset;
+}
+
+.steps li i {
+  position: relative;
+  z-index: 4;
+  display: block;
+  font-style: unset;
+  font-weight: bold;
+  color: #888;
+  background-color: #ddd;
+  width: 35px;
+  height: 35px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  /* margin-right: 5px; */
+}
+
+.steps li,
+.steps li i {
+  transition: 0.5s;
+}
+
+.steps .active {
+  color: rgb(17, 180, 255);
+  transition-delay: 3.5s;
+}
+
+.steps .active i {
+  background-color: rgb(17, 180, 255);
+  color: #fff;
+  transition-delay: 3.5s;
+}
+
+.steps .active::before {
+  background-size: 100%;
+}
+
+/* akhir Step */
+
+/* Form Login */
+.tempat-login {
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+#log #login,
+#login,
+#row #login {
+  transition: all 1s;
+}
+
+.login,
+.output-coblos div {
+  border-radius: 20px;
+  box-shadow: rgba(54, 54, 54, 0.8) 7px 7px 30px -10px;
+}
+
+.login {
+  position: relative;
+  margin-top: 40px;
+  overflow: hidden;
+  z-index: 10;
+  height: 520px;
+}
+
+.proses {
+  position: relative;
+  padding: 5px;
+}
+
+.load-proccess {
+  position: absolute;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background-color: #fff;
+}
+
+.login-alert {
+  position: absolute;
+  left: 5%;
+  top: 150px;
+  z-index: 11;
+  max-width: 300px;
+}
+
+.logo {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.login .logo img {
+  max-height: 70px;
+  width: auto;
+}
+
+.input-div {
+  position: relative;
+  display: grid;
+  grid-template-columns: 7% 93%;
+  margin: 25px 0;
+  padding: 5px 0;
+  border-bottom: 2px solid #d9d9d9;
+}
+
+.input-div.one {
+  margin-top: 0;
+}
+
+.i {
+  color: #d9d9d9;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.i i {
+  transition: 0.3s;
+}
+
+.input-div>div {
+  position: relative;
+  height: 45px;
+}
+
+.input-div>div>h5 {
+  position: absolute;
+  left: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #999;
+  font-size: 18px;
+  transition: 0.3s;
+}
+
+.input-div:before,
+.input-div:after {
+  content: "";
+  position: absolute;
+  bottom: -2px;
+  width: 0%;
+  height: 2px;
+  background-color: rgb(255, 187, 41);
+  transition: 0.4s;
+}
+
+.input-div:before {
+  right: 50%;
+}
+
+.input-div:after {
+  left: 50%;
+}
+
+.input-div.focus:before,
+.input-div.focus:after {
+  width: 50%;
+}
+
+.input-div.focus>div>h5 {
+  top: -5px;
+  font-size: 15px;
+}
+
+.input-div.focus>.i>i {
+  color: rgb(255, 187, 41);
+}
+
+.input-div>div>input {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+  outline: none;
+  background: none;
+  padding: 0.5rem 0.7rem;
+  font-size: 1.2rem;
+  color: #555;
+  font-family: "poppins", sans-serif;
+}
+
+.input-div.pass {
+  margin-bottom: 4px;
+  padding-right: 35px;
+}
+
+.input-div.focus>.show-password {
+  display: unset;
+}
+
+.show-password {
+  position: absolute;
+  right: 20px;
+  top: 40%;
+  color: #999;
+  display: none;
+  transition: ease 0.5s;
+}
+
+.show-password:hover {
+  color: rgb(255, 187, 41);
+  cursor: pointer;
+}
+
+/* Akhir Form Login */
+
+/* Bilik Suara */
+.logged-in {
+  margin-top: -100px;
+  height: 190px;
+  box-shadow: unset;
+  border: 1px solid rgb(17, 180, 255);
+  border-radius: 60px;
+}
+
+.logged-in .steps {
+  margin-top: 50px;
+}
+
+.info-pilihan {
+  position: absolute;
+  top: -2.37cm;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 90px;
+  width: 100%;
+  font-size: larger;
+}
+
+.kandidat-list {
+  position: relative;
+  z-index: 10;
+  min-height: 0vh;
+  transition: all 1s;
+}
+
+.kandidat {
+  min-height: 60vh !important;
+}
+
+.form-kandidat {
+  padding-top: 10px;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.kandidat .active {
+  box-shadow: rgba(0, 132, 255, 0.7) 0px 0px 20px 0px;
+  transform: scale(1.07);
+}
+
+.kandidat-item {
+  margin-top: 5px;
+  position: relative;
+  background-color: #fff;
+  width: 23%;
+  height: 400px;
+  margin: 10px 5px;
+  border-radius: 10px !important;
+  box-shadow: rgba(54, 54, 54, 0.8) 7px 7px 30px -10px;
+  overflow: hidden;
+  transition: all 0.5s;
+}
+
+.kandidat-item .btn,
+.coblos-button {
+  font-size: large;
+  text-transform: uppercase;
+  display: block;
+  width: 100%;
+  border-radius: unset;
+  letter-spacing: 3px;
+  height: 35px;
+}
+
+.vm,
+.coblos-button {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  transition: all 0.5s;
+}
+
+.vm {
+  width: 100%;
+  display: flex;
+  justify-content: stretch;
+  align-items: center;
+}
+
+.coblos-button input {
+  display: none;
+}
+
+.coblos-button label {
+  cursor: pointer;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #da3f5c;
+  width: 100%;
+  height: 100%;
+}
+
+.coblos-button label:hover {
+  background-color: #e62424;
+}
+
+.coblos-button input:checked+label {
+  background-color: #d30c0c;
+  cursor: default;
+}
+
+.kandidat-item:hover {
+  transform: scale(1.07);
+}
+
+.kandidat-item.active .coblos-button {
+  height: 60px;
+}
+
+.kandidat-item:hover .coblos-button,
+.kandidat-item.active:hover .coblos-button {
+  height: 100px;
+  font-size: x-large;
+}
+
+.kandidat-item:hover .foto-kandidat {
+  max-height: 170px !important;
+}
+
+.kandidat-item.active .foto-kandidat {
+  max-height: 220px;
+}
+
+.kandidat-item:hover .vm {
+  bottom: 100px;
+}
+
+.nomor-kandidat {
+  display: block;
+  width: 100%;
+  margin: 0;
+  padding: 10px;
+  background-color: rgb(255, 174, 0);
+  color: #fff;
+  text-transform: uppercase;
+  text-align: center;
+  font-size: large;
+  letter-spacing: 1px;
+  font-weight: 200;
+}
+
+.foto-kandidat {
+  position: relative;
+  width: 100%;
+  max-height: 250px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  transition: all 0.5s;
+}
+
+.foto-kandidat img {
+  width: 100%;
+  max-width: 270px;
+}
+
+.lihat-gambar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  font-size: large;
+  text-align: center;
+  background-color: rgba(0, 0, 0, 0.65);
+  transform: scale(1.4);
+  opacity: 0;
+  transition: all 0.25s;
+}
+
+.lihat-gambar:hover {
+  transform: scale(1);
+  opacity: 1;
+}
+
+.lihat-gambar a {
+  text-decoration: none;
+  color: #999 !important;
+  font-size: smaller !important;
+}
+
+.lihat-gambar a:hover {
+  color: #fff !important;
+}
+
+.full {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.full div {
+  width: auto;
+  height: auto;
+  position: relative;
+}
+
+.full .close {
+  font-size: xx-large;
+  cursor: pointer;
+  padding: 0 7px;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.full img {
+  max-width: 100%;
+  max-height: 90vh;
+  height: auto;
+  width: auto;
+}
+
+.nama-kandidat {
+  text-align: center;
+  display: block;
+  padding: 5px 15px;
+  width: 100%;
+  font-size: x-large;
+  font-weight: bold;
+  line-height: 25px;
+  text-transform: capitalize;
+}
+
+.dinas {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  font-size: large;
+  background-color: rgb(255, 174, 0);
+  color: #fff;
+  padding: 3px 7px 3px 5px;
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+}
+
+.kumpulkan-suara {
+  display: flex;
+  margin-top: 20px;
+  width: 100%;
+  justify-content: center;
+}
+
+.kumpulkan-suara button {
+  width: 80%;
+  background-image: linear-gradient(to right,
+      rgb(17, 180, 255),
+      rgb(0, 96, 138),
+      rgb(17, 180, 255));
+  background-size: 200%;
+  text-transform: uppercase;
+  color: #fff !important;
+  font-size: large;
+  letter-spacing: 2px;
+  border-radius: 40px;
+  padding: 12px;
+  transition: all 0.5s;
+}
+
+.kumpulkan-suara button:hover {
+  background-position: right;
+}
+
+.kumpulkan-suara button.disabled:hover {
+  background-position: unset;
+}
+
+.proses-kumpulkan-suara {
+  height: 100%;
+  border: 1px tomato solid;
+}
+
+.loading-suara {
+  width: 100%;
+  height: 70%;
+  padding: 10px 0;
+  border-radius: 20px;
+  display: flex;
+  justify-content: center;
+  transition: all 3s;
+  overflow: hidden;
+}
+
+.kotak-masuk {
+  padding: 0px 0 !important;
+}
+
+.kotak-masuk svg {
+  margin-top: -300px;
+}
+
+.svg-suara svg {
+  height: 120vh;
+  transition: all 3s;
+}
+
+.loading-suara .teks {
+  font-size: larger;
+  width: 100%;
+  text-align: center;
+  position: absolute;
+  top: 60%;
+  left: 0;
+}
+
+.kotak-masuk .teks {
+  top: 15% !important;
+  text-transform: uppercase;
+  color: green;
+}
+
+.surat-suara,
+.kotak-suara {
+  transition: ease-in-out 2s;
+}
+
+.surat-loading {
+  animation: linear loading-surat-suara 3s infinite;
+}
+
+.surat-masuk {
+  animation: linear surat-masuk-kotak 3s;
+}
+
+.output-coblos div {
+  margin-top: 15px;
+  text-align: center;
+  font-size: larger;
+}
+
+.check {
+  font-size: 10em;
+  line-height: 50px;
+  color: #25D366;
+}
+
+.times {
+  font-size: 10em;
+  line-height: 50px;
+  color: #cd201f;
+}
+
+/* Akhir Bilik */
+
+.madeby {
+  position: relative;
+  z-index: 10;
+  margin-top: 30px;
+  width: 100%;
+  z-index: 4;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  font-weight: 300;
+  font-size: larger;
+  line-height: 20px;
+  letter-spacing: 1.5px;
+}
+
+.madeby .fa-heart,
+.fa-power-off {
+  color: #ff1641;
+  font-size: larger;
+}
+
+.d-unset {
+  display: unset !important;
+}
+
+@media (max-width: 575.98px) {
+  .kandidat-item {
+    min-width: 98%;
+    margin: 10px;
+  }
+
+  .form-kandidat {
+    padding: 25px;
+  }
+}
+
+/* Small devices (landscape phones, less than 768px) */
+@media (max-width: 767.98px) {
+  .kandidat-item {
+    width: 45% !important;
+    margin: 10px;
+  }
+
+  .kumpulkan-suara {
+    position: sticky !important;
+    bottom: 20px;
+  }
+
+  .form-kandidat {
+    padding: 20px;
+  }
+
+  .navbar-brand,
+  .nav-kanan {
+    display: none;
+  }
+
+  .nav-kanan,
+  .judul {
+    flex: 1;
+  }
+
+  .judul.text-center h3 {
+    font-size: 140%;
+    text-align: left;
+  }
+
+}
+
+/* Medium devices (tablets, less than 992px) */
+@media (max-width: 991.98px) {
+  .kandidat-item {
+    width: 31%;
+  }
+
+  .collapse.navbar-collapse {
+    display: unset;
+    width: 100%;
+  }
+
+  .navbar-nav {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin: -0.5cm !important;
+  }
+
+  .navbar-nav a {
+    margin-top: auto;
+    margin-bottom: auto;
+  }
+
+  .wkt {
+    padding-top: 0;
+  }
+}
+
+/* Large devices (desktops, less than 1200px) */
+@media (max-width: 1199.98px) {}
+
+/* Animasi */
+@keyframes muter1 {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(-360deg);
+  }
+}
+
+@keyframes muter2 {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes preloadtext {
+  0% {
+    content: "";
+  }
+
+  25% {
+    content: " .";
+  }
+
+  50% {
+    content: " . .";
+  }
+
+  75% {
+    content: " . . .";
+  }
+
+  100% {
+    content: "";
+  }
+}
+
+@keyframes loading-surat-suara {
+  0% {
+    transform: scale(1.6) translateX(-125px) translateY(100px) skewY(0deg);
+  }
+
+  50% {
+    transform: scale(1.6) translateX(-125px) translateY(120px) skewY(0deg);
+  }
+
+  100% {
+    transform: scale(1.6) translateX(-125px) translateY(100px) skewY(0deg);
+  }
+}
+
+@keyframes surat-masuk-kotak {
+  0% {
+    transform: scale(1.6) translateX(-125px) translateY(120px) skewY(0deg);
+  }
+
+  20% {
+    transform: scale(1) translateX(0) translateY(550px) skewY(-21deg);
+  }
+
+  50% {
+    transform: scale(1) translateX(0) translateY(850px) skewY(-21deg);
+  }
+
+  100% {
+    transform: scale(0.6) translateX(200px) translateY(2500px) skewY(-21deg);
+  }
+}
+
+@keyframes kotak-masuk {
+  0% {
+    transform: scale(0.6) translateY(0);
+  }
+
+  100% {
+    transform: scale(0.6) translateY(300px);
+  }
+}
+
+/* Akhir Animasi */

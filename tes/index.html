@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Document</title>
+  <link rel="stylesheet" href="Layout.css">
+  <style>
+    .active {
+      background-color: red;
+      color: #fff;
+    }
+
+    .li {
+      font-size: larger;
+      margin: 30px;
+      border: 1px black solid;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="main">
+    <ul id="mainl">
+      <li class="li active">A</li>
+      <li class="li">B</li>
+      <li class="li">C</li>
+      <li class="li">D</li>
+    </ul>
+  </div>
+
+  <!-- <script>
+    const li = document.getElementById('main'),
+      lis = document.querySelectorAll('.li');
+
+    lis.forEach(list => {
+      list.addEventListener('click', function (e) {
+        e.preventDefault();
+        let active = li.querySelector('.active');
+        if (active) {
+          active.classList.remove('active');
+        }
+        this.classList.add('active');
+      })
+    })
+  </script> -->
+
+  <script>
+    var liContainer = document.getElementById('main');
+    var li = liContainer.getElementsByClassName('li');
+
+    for (i = 0; i < li.length; i++) {
+      li[i].addEventListener('click', function () {
+        var current = document.getElementsByClassName('active')[0];
+        current.className = current.className.replace(' active', ' ');
+        this.className += ' active';
+      })
+    }
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="../assets/css/loading.css" />
+  <link rel="stylesheet" href="../assets/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="../../assets/css/all.min.css" />
+  <link rel="stylesheet" href="../assets/css/animate.css" />
+  <link rel="stylesheet" href="./style.css" />
+  <script src="../assets/js/libs/jquery.min.js"></script>
+  <title>Admin Panel Pemilu Online</title>
+</head>
+
+<body>
+  <!-- Preloader -->
+  <div id="preloader">
+    <div class="load">
+      <div class="load-animation main-load">
+        <div class="anime">
+          <div class="a-box"></div>
+          <div class="a-box"></div>
+          <div class="a-box"></div>
+          <div class="a-box"></div>
+          <div class="a-box"></div>
+        </div>
+      </div>
+      <span>Menyiapkan Aplikasi </span>
+    </div>
+  </div>
+  <!-- Akhir Preloader -->
+
+  <!-- Modal -->
+  <div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="IkiModal" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document"></div>
+  </div>
+
+  <!-- login -->
+  <div class="header">
+
+  </div>
+  <div class="row konten">
+    <div class="notifikasi login-container">
+      <div role="alert" aria-live="assertive" aria-atomic="true" class="toast" data-delay="10000" data-autohide="true"
+        data-animation="true">
+      </div>
+    </div>
+
+    <div id="login" class="bg-bar col-md-12">
+      <div id="row" class="row temp justify-content-center w-100">
+        <div id="login" class="col-10 col-sm-6 col-md-4 bg-white pl-4 pr-4 pt-3 pb-4 login">
+          <h3 class="text-center title">ADMIN PANEL</h3>
+          <hr />
+
+          <form action="" class="proses" method="POST">
+            <div class="input-div one">
+              <div class="i">
+                <i class="fas fa-user"></i>
+              </div>
+              <div class="div">
+                <h5>Username</h5>
+                <input type="text" class="input username" required />
+              </div>
+            </div>
+            <div class="input-div pass">
+              <div class="i">
+                <i class="fas fa-lock"></i>
+              </div>
+              <div class="div">
+                <h5>Password</h5>
+                <input type="password" class="input password" required />
+              </div>
+              <i class="fa fa-eye-slash show-password"></i>
+            </div>
+            <input type="submit" class="btn btn1 tombolProses mt-5" value="Login Admin" />
+            <div class="load-proccess d-none"></div>
+          </form>
+          <div class="result"></div>
+        </div>
+      </div>
+      <div class="login-container madeby text-white">
+        <p>
+          Made with <i class="fa fa-heart"></i> by
+          <a href="http://instagarm.com/aguzztn54" target="_blank" rel="noopener noreferrer"
+            class="text-white"><b>Agus</b>
+          </a>
+          <br />Lulusan 2018
+        </p>
+      </div>
+    </div>
+    <!-- Kontent -->
+
+    <div class="worksheet">
+    </div>
+
+
+  </div>
+  <!-- akhir login -->
+
+  <!-- Optional JavaScript -->
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <script src="../assets/js/libs/bootstrap.bundle.min.js"></script>
+  <script src="../assets/js/libs/easing.js"></script>
+  <script src="../assets/js/libs/waypoints.min.js"></script>
+  <script src="../assets/js/libs/counterup.min.js"></script>
+  <script src="../assets/js/libs/wow.js"></script>
+  <script src="main.js"></script>
+
+
+  <script>
+    const inputs = document.querySelectorAll(".input");
+
+    function addcl() {
+      let parent = this.parentNode.parentNode;
+      parent.classList.add("focus");
+    }
+
+    function remcl() {
+      let parent = this.parentNode.parentNode;
+      if (this.value == "") {
+        parent.classList.remove("focus");
+      }
+    }
+
+    inputs.forEach(input => {
+      input.addEventListener("focus", addcl);
+      input.addEventListener("blur", remcl);
+    });
+  </script>
+</body>
+
+</html>

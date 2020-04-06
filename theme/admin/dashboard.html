@@ -1,0 +1,134 @@
+<h3 class="sub-title mb-3 wow fadeInUp" style="font-weight:bold;" data-wow-duration="1.7s" data-wow-delay="1s">dashboard
+</h3>
+<div class="row mr-2 wow fadeInUp" data-wow-duration="1.7s" data-wow-delay="1.1s">
+  <div class="col-sm-8">
+    <div class="position-relative on-off">
+      <div class="btn-pilu pemilu-on"> <span> Pemilu Sedang Berlangsung</span></div>
+      <button class="btn tugel-pilu btn-pilu stop-pemilu"><i class="fa fa-toggle-on"></i> Stop</button>
+    </div>
+  </div>
+
+  <div class="col-sm-4">
+    <div class="waktu-ditempuh bg-white shadow p-3 rounded">
+      <span class="info-title"> Pemilu Aktif Selama</span>
+      <span class="info-body"> 2 Jam 21 Menit</span>
+    </div>
+  </div>
+</div>
+
+<div class="row mr-2 mt-4 wow fadeInUp" data-wow-duration="1.7s" data-wow-delay="1.2s">
+  <div class="col-lg-8 col-sm-7 mb-2 pb-0">
+    <div class="informasi-suara shadow bg-white rounded p-3" style="height:100%;">
+      <h3 class="sub-title pr-3 pl-3">Informasi Suara <button class="btn reset" disabled="disabled">Reset</button>
+      </h3>
+      <div class="divider"></div>
+      <div class="hasil row align-items-center justify-content-center text-center">
+        <div class="hasil-item col-6 col-lg-3">
+          <h4 class="info-body hitung" id="suaraSah">
+            <span class="nowNum"> 128</span>
+          </h4>
+          <span class="info-title">Suara Sah</span>
+        </div>
+
+        <div class="hasil-item col-6 col-lg-3">
+          <h4 class="info-body hitung" id="totalMasuk">
+            <span class="nowNum"> 191</span>
+          </h4>
+          <span class="info-title">Total Login</span>
+        </div>
+
+        <div class="hasil-item col-6 col-lg-3">
+          <h4 class="info-body hitung" id="golput">
+            <span class="nowNum"> 194</span>
+          </h4>
+          <span class="info-title">Tidak Memilih</span>
+        </div>
+
+        <div class="hasil-item col-6 col-lg-3">
+          <h4 class="info-body hitung" id="belumMasuk">
+            <span class="nowNum"> 198</span>
+          </h4>
+          <span class="info-title">Belum Login</span>
+        </div>
+      </div>
+      <button class="btn btn1" disabled="disabled">Cek Detail Perolehan Suara</button>
+
+      <div class="aksi d-flex align-items-center">
+        <a href="#" class="aksi-item rounded">
+          <i class="fa fa-plus"></i>
+          <span class="info-title"> Tambah Kandidat</span>
+        </a>
+        <a href="#" class="aksi-item rounded">
+          <i class="fa fa-plus"></i>
+          <span class="info-title"> Tambah Pemilih</span>
+        </a>
+        <a href="#" class="aksi-item rounded">
+          <i class="fa fa-cog"></i>
+          <span class="info-title"> Setting Pemilu</span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-lg-4 col-sm-5">
+    <div class="bg-white rounded shadow overflow-hidden">
+      <h5 class="sub-title bg-utama justify-content-center text-white p-3"> Bilik Aktif</h5>
+      <div class="online-info m-2">
+        <div class="ml-3 mr-3 mb-1">
+          BILIK ONLINE : <strong><span class="onlineCount">5</span></strong><br>
+          SEDANG MENCOBLOS : <strong><span class="coblosCount">3</span></strong>
+        </div>
+        <div class="divider"></div>
+        <div class="scroll" style="height:230px;">
+
+          <div id="abcd" class="on-item d-flex align-items-center">
+            <span class="device-name">
+              <i class="fab fa-windows on-icon"></i>
+              Windows 10 Chrome 80
+            </span>
+            <span class="on-status">Online</span>
+            <div class="d-flex device-id">
+              <span class="sid">ID : alshfdsdf</span>
+              <span class="device-ip">IP : 108.112.5.124</span>
+            </div>
+          </div>
+          <div id="pqrs" class="on-item d-flex align-items-center">
+            <span class="device-name">
+              <i class="fab fa-windows on-icon"></i>
+              Windows 10 Chrome 80
+            </span>
+            <span class="on-status">Sedang Mencoblos</span>
+            <div class="d-flex device-id">
+              <span class="sid">ID : alshfdsdf</span>
+              <span class="device-ip">IP : 108.112.5.124</span>
+            </div>
+          </div>
+          <div id="mnop" class="on-item d-flex align-items-center">
+            <span class="device-name">
+              <i class="fab fa-windows on-icon"></i>
+              Windows 10 Chrome 80
+            </span>
+            <span class="on-status">Online</span>
+            <div class="d-flex device-id">
+              <span class="sid">ID : alshfdsdf</span>
+              <span class="device-ip">IP : 108.112.5.124</span>
+            </div>
+          </div>
+          <div id="ijkl" class="on-item d-flex align-items-center">
+            <span class="device-name">
+              <i class="fab fa-windows on-icon"></i>
+              Windows 10 Chrome 80
+            </span>
+            <span class="on-status">Online</span>
+            <div class="d-flex device-id">
+              <span class="sid">ID : alshfdsdf</span>
+              <span class="device-ip">IP : 108.112.5.124</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+<script src="./dashboard.js"></script>

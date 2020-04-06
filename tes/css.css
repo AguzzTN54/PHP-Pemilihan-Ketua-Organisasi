@@ -1,0 +1,39 @@
+.list {
+  padding: 10px;
+  margin: 10px;
+  height: 15px;
+  width: 50px;
+  display: inline-block;
+  position: relative;
+}
+
+label {
+  border-radius: 5px;
+  border: 1px black solid;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+input {
+  display: none;
+}
+
+
+input:checked+label::before {
+  content: '\02143';
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: red;
+  position: absolute;
+  top: -25px;
+  left: -3px;
+  padding: 20px 6px 20px 10px;
+  transform: rotate(45deg);
+  color: #fff;
+}

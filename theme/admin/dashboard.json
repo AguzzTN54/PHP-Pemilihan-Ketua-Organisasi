@@ -1,0 +1,35 @@
+{
+  "statusPemilu": 1,
+  "suara": {
+    "totalMasuk": 230,
+    "suaraSah": 193,
+    "golput": 89,
+    "belumMasuk": 27
+  },
+  "bilikAktif": {
+    "online": 3,
+    "mencoblos": 1,
+    "info": [{
+        "status": "Sedang Makam",
+        "os": "linux",
+        "browser": "Chrome 10 Windows",
+        "sid": "abcd",
+        "ip": "123.444.123.44"
+      },
+      {
+        "status": "Online",
+        "os": "android",
+        "browser": "Chrome 10 Windows",
+        "sid": "efgh",
+        "ip": "123.444.123.44"
+      },
+      {
+        "status": "Sedang mencoblos",
+        "os": "windows",
+        "browser": "Chrome 10 Windows",
+        "sid": "ijkl",
+        "ip": "123.444.123.44"
+      }
+    ]
+  }
+}

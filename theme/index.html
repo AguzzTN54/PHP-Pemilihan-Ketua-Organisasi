@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="./assets/css/loading.css">
+  <link rel="stylesheet" href="./assets/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="../../e-vote/assets/css/all.min.css" />
+  <link rel="stylesheet" href="./assets/css/animate.css">
+  <!-- <link rel="stylesheet" href="./assets/css/style.css" /> -->
+  <title>Pemilihan Ketua OSIS </title>
+</head>
+
+<body class="tempat-login">
+  <!-- Preloader -->
+  <div id="preloader">
+    <div class="load">
+      <div class="load-animation main-load">
+        <div class="anime">
+          <div class="a-box"></div>
+          <div class="a-box"></div>
+          <div class="a-box"></div>
+          <div class="a-box"></div>
+          <div class="a-box"></div>
+        </div>
+      </div>
+      <span>Menyiapkan Aplikasi </span>
+    </div>
+  </div>
+  <!-- Akhir Preloader -->
+
+  <!-- Modal -->
+  <div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="IkiModal" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+
+    </div>
+  </div>
+  tess
+
+
+
+
+
+
+
+  <div class="madeby">
+    <p>
+      Made with <i class="fa fa-heart"></i> by <a href="http://instagarm.com/aguzztn54" target="_blank"
+        rel="noopener noreferrer">Agus</a><br>Lulusan 2018
+    </p>
+  </div>
+
+  <!-- Optional JavaScript -->
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <script src="./assets/js/libs/jquery.min.js"></script>
+  <script src="./assets/js/libs/bootstrap.bundle.min.js"></script>
+  <script src="./assets/js/libs/easing.js"></script>
+  <script src="./assets/js/libs/wow.js"></script>
+  <script src="admin/main.js"></script>
+
+  <script>
+    const inputs = document.querySelectorAll(".input");
+
+
+    function addcl() {
+      let parent = this.parentNode.parentNode;
+      parent.classList.add("focus");
+    }
+
+    function remcl() {
+      let parent = this.parentNode.parentNode;
+      if (this.value == "") {
+        parent.classList.remove("focus");
+      }
+    }
+
+    inputs.forEach(input => {
+      input.addEventListener("focus", addcl);
+      input.addEventListener("blur", remcl);
+    });
+  </script>
+</body>
+
+</html>
