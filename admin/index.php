@@ -26,7 +26,7 @@ try{
   $online = new Online;
   $online->update('hapus');
 
-  $uri = explode('/',$_GET['uri']);
+  $uri = explode('/',strtolower($_GET['uri']));
   if(@$uri[0]=='app'){
     $act = 'app';
     $page = @$uri[1];

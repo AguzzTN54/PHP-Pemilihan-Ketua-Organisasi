@@ -9,11 +9,13 @@ if($do == 'hapus'){
       'idPemilih' => $id,
       'namaPemilih' => $user->show($id, 'namaPemilih'),
     ));
-    echo $submit['msg'];
 
   }else{
-    header('location:'.$adminHome.'pemilih-tetap');
+    $submit['success'] = false;
+    $submit['msg'] = 'Tidak dapat Menghapus';
   }
+
+  echo json_encode($submit);
 
 }elseif($do == 'tambah' || $do == 'edit'){
   if($do == 'edit'){
@@ -22,42 +24,81 @@ if($do == 'hapus'){
       $editUsername = $user->show($id,'username');
       $editPass = $user->show($id,'password');
       if(empty($editNama)){
-        $anonim = 'Anonim';
+        $anonim = ' <div class="col"><i class="text-primary"> Anonim</i></div>';
       }
       $aksi = 'edit';
+      $aksiURI = 'edit/'.$id;
     }else{
       header('location:'.$adminHome.'pemilih-tetap');
     }
   }else{
     $aksi = 'tambah';
+    $aksiURI = $aksi;
   }
 
   if($_POST['set']){
+    header('Content-Type: application/json');
+
     $namaPemilih = $_POST['namaPemilih'];
     $userName = $_POST['userName'];
-    $userPass = $_POST['passPemilih'];
-  
-    $submit = $user->set(array(
-      'aksi' => $aksi,
-      'idPemilih' => $id,
-      'namaPemilih' => $namaPemilih,
-      'userName' => $userName,
-      'password' => $userPass,
-    ));
+    
+    if($_POST['passPemilih1'] == $_POST['passPemilih2']){
+      $userPass = $_POST['passPemilih1'];
+      $submit = $user->set(array(
+        'aksi' => $aksi,
+        'idPemilih' => $id,
+        'namaPemilih' => $namaPemilih,
+        'userName' => $userName,
+        'password' => $userPass,
+      ));
+    }else{
+      $submit['success'] = false;
+      $submit['msg'] = 'Password Tidak sama !';
+    }
 
-    echo $submit['msg'];
+    echo json_encode($submit);
   
   }else{
 ?>
 
-<form action="" method="post">
-  <input type="text" name="namaPemilih" placeholder="Nama" value="<?php echo $editNama?>"> <?php echo $anonim?><br>
-  <input type="text" name="userName" placeholder="username" value="<?php echo $editUsername?>"> <br>
-  <input type="password" name="passPemilih" placeholder="Password"><br>
-  <input type="submit" value="Kirim" name="set">
-</form>
+<div class="form-group">
+  <label for="namaPemilih"><b>Nama Pemilih Tetap </b><i class="text-primary">bisa dikosongi (Anonim)</i></label>
+  <div class="row">
+    <div class="col">
+      <input class="form-control" id="namaPemilih" type="text" name="namaPemilih" placeholder="Nama"
+        value="<?php echo $editNama?>">
+    </div>
+    <?php echo $anonim?>
+  </div>
+</div>
+<div class="form-group">
+  <label for="username"><b>Username</b></label>
+  <input class="form-control" id="username" type="text" name="userName" placeholder="username"
+    value="<?php echo $editUsername?>" required>
+</div>
+<div class="form-group">
+  <label for="password1"><b>Password</b></label>
+  <div class="row">
+    <div class="col-sm-6">
+      <input class="form-control" type="password" id="password1" name="passPemilih1" placeholder="Password" required>
+    </div>
+    <div class="col-sm-6">
+      <input class="form-control" type="password" id="password2" name="passPemilih2" placeholder="Retype Password"
+        required>
+    </div>
+  </div>
+</div>
 
-<?php
+</div>
+<div class="modal-footer">
+  <input type="hidden" name="set" value="set">
+  <button class="btn btn-primary" data-dismiss="modal">Batal</button>
+  <button type="submit" class="btn btn-success btn-update-u" target-aksi="<?=$aksiURI?>"><i class="fa fa-check"></i>
+    Update</button>
+
+  <script src="assets/js/upload.js"></script>
+
+  <?php
   }
  //Akhir Tambah atau edit user
 
@@ -87,12 +128,21 @@ if($do == 'hapus'){
     echo '<br> Gagal ditambahkan => '.array_sum($gglAdd);
   }else{
 ?>
-<form action="" method="post">
-  <input type="number" name="jumlahUser"><br>
-  <input type="submit" value="Generate" name="generate">
-</form>
+  <div class="form-group">
+    <label for="targetJumlah"><b>Jumlah Pemilih Tetap yang diinginkan</b></label>
+    <input type="number" id="targetJumlah" class="form-control" name="jumlahUser" required
+      placeholder="Jumlah Pemilih Tetap">
+  </div>
+</div>
+<div class="modal-footer">
+  <input type="hidden" name="generate" value="generate">
+  <button class="btn btn-primary" data-dismiss="modal">Batal</button>
+  <button type="submit" class="btn btn-success btn-update-u" target-aksi="<?=$aksiURI?>"><i class="fa fa-check"></i>
+    Update</button>
 
-<?php
+  <script src="assets/js/upload.js"></script>
+
+  <?php
   }
   //Akhir Generate user otomatis
 }elseif($do=='export'){
@@ -175,14 +225,16 @@ if($do == 'hapus'){
         <td> '.$nama .' </td>
         <td> '.$userName.' </td>
         <td> '.$loginAttempt.' </td>
-        <td> <a href="'.$adminHome.'pemilih-tetap/edit/'.$idUser.'" class="btn btn-primary"> <i class="fa fa-edit"></i> Hapus </a> <a href="'.$adminHome.'pemilih-tetap/hapus/'.$idUser.'" class="btn btn-danger"> <i class="fa fa-trash-alt"></i> Hapus</a> </td>
+        <td>
+          <a href="'.$adminHome.'pemilih-tetap/edit/'.$idUser.'" class="btn btn-primary btn-mdl tambahAksi" idForm="form-update-u" target-name="pemilih-tetap" target-aksi="edit" target-id="'.$idUser.'" target-init="'.$userName.'"> <i class="fa fa-edit"></i> Edit </a>
+          <a href="'.$adminHome.'pemilih-tetap/hapus/'.$idUser.'" class="btn btn-danger btn-mdl tambahAksi" idForm="form-update-u" target-name="pemilih-tetap" target-aksi="hapus" target-id="'.$idUser.'" target-init="'.$userName.'"> <i class="fa fa-trash-alt"></i> Hapus</a>
+        </td>
       </tr>';
     }
 
     echo '</form>';
 ?>
 
-<form action="" method="post">
   <div class="wow fadeInUp" data-wow-duration="1.7s" data-wow-delay="1.2s">
     <div class="d-flex align-items-center" style="justify-content:space-between;">
       <h3 class="sub-title" style="font-weight:bold;">Daftar Pemilih Tetap <button class="btn ml-2 reset"
@@ -190,14 +242,17 @@ if($do == 'hapus'){
     </div>
     <div class="d-flex" style="justify-content:space-between">
       <h5 class="sub-title">Total : <strong> <?=$user->jumlahUser?> </strong></h5>
-      <a href="<?=$adminHome?>pemilih-tetap/export" class="btn btn-outline-dark" style="margin:0 30px 0 10px">
+      <a href="<?=$adminHome?>app/pemilih-tetap/export" class="btn btn-outline-dark" style="margin:0 30px 0 10px">
         <i class="fa fa-file-excel"></i> Export XLS
       </a>
     </div>
 
     <button class="btn-mdl btn btn-outline-danger"><i class="fa fa-trash-alt"></i> Hapus Terpilih</button>
-    <button class="btn-mdl btn btn-outline-dark"><i class="fa fa-plus"></i> Tambah Pemilih</button>
-    <button class="btn-mdl btn btn-outline-dark"><i class="fa fa-plus"></i> Generate Pemilih</button>
+    <button class="btn-mdl btn btn-outline-dark tambahAksi" idForm="form-update-u" target-name="pemilih-tetap"
+      target-aksi="tambah"><i class="fa fa-plus"></i> Tambah Pemilih</button>
+    <button class="btn-mdl btn btn-outline-dark tambahAksi" idForm="form-update-u" target-name="pemilih-tetap"
+      target-aksi="generate"><i class="fa fa-plus"></i> Generate
+      Pemilih</button>
   </div>
 
   <div class="bg-white shadow rounded p-3 mt-3 wow fadeInUp" data-wow-duration="1.7s" data-wow-delay="1.4s">
@@ -216,15 +271,15 @@ if($do == 'hapus'){
       </tbody>
     </table>
   </div>
-</form>
 
-<script>
-$(document).ready(function() {
-  $('#dataTables').DataTable();
+  <script src="assets/js/kandidat.js"></script>
+  <script>
+  $(document).ready(function() {
+    $('#dataTables').DataTable();
 
-});
-</script>
-<?php
+  });
+  </script>
+  <?php
   }
 }
 

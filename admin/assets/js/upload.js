@@ -125,4 +125,105 @@ function removeUpload(hapus = null) {
 
   });
 
+
+  function submitForm(datas = null, target = null, aksi = null, id = null) {
+    if (id == null) {
+      aksiURI = aksi;
+    } else {
+      aksiURI = aksi + '/' + id;
+    }
+    console.log(target + aksiURI)
+    console.log('app/' + target + '/' + aksiURI);
+
+    $.ajax({
+      url: 'app/' + target + aksiURI,
+      data: datas,
+      type: 'POST',
+      contentType: false,
+      cache: false,
+      processData: false,
+      dataType: "html",
+      success: function (data) {
+        $('#form-update').html(data);
+        // if (data.success) {
+        //   notif('success', 'Berhasil menyimpan Perubahan');
+        //   $("#item-preload").fadeIn("slow", function () {
+        //     $(this).show();
+        //     $('.app').load('app/' + target, function () {
+        //       if ($("#item-preload").length) {
+        //         $("#item-preload")
+        //           .delay(1000)
+        //           .fadeOut("slow", function () {
+        //             $(this).hide();
+        //             $('#modal').modal('hide');
+        //           });
+        //       }
+        //     })
+        //   });
+        // } else {
+        //   notif('danger', 'Terjadi Kesalahan');
+        //   $('.simpan').removeAttr('disabled');
+        //   $('.simpan').html('<i class="fa fa-check"></i> Simpan');
+        // }
+      },
+      error: function (responseTxt, statusTxt, xhr) {
+        console.log('eror');
+        console.log(responseTxt);
+        console.log(statusTxt);
+        console.log(xhr);
+      }
+    })
+  }
+
+  // $('#form-update').on('submit', function (e) {
+  //   e.preventDefault()
+  //   let datas = new FormData(this),
+  //     target = 'kandidat',
+  //     aksi = 'edit',
+  //     id = 2;
+
+  //   return submitForm(datas, target, aksi, id);
+  // })
+
+  $('#form-update-u').on('submit', function (e) {
+    e.preventDefault();
+    $('.form-update').removeAttr('id');
+    $('.btn-update-u').attr('disabled', 'disabled');
+    $('.btn-update-u').html('<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Update');
+    var aksi = $('.btn-update-u').attr('target-aksi');
+    console.log(aksi);
+
+    $.ajax({
+      url: 'app/pemilih-tetap/' + aksi,
+      dataType: 'json',
+      data: new FormData(this),
+      type: 'POST',
+      contentType: false,
+      cache: false,
+      processData: false,
+      success: function (data) {
+        if (data.success) {
+          notif('success', 'Berhasil menyimpan Perubahan');
+          $("#item-preload").fadeIn("slow", function () {
+            $(this).show();
+            $('.app').load('app/pemilih-tetap', function () {
+              if ($("#item-preload").length) {
+                $("#item-preload")
+                  .delay(1000)
+                  .fadeOut("slow", function () {
+                    $(this).hide();
+                    $('#modal').modal('hide');
+                  });
+              }
+            })
+          });
+        } else {
+          notif('danger', 'Terjadi Kesalahan');
+          $('.simpan').removeAttr('disabled');
+          $('.simpan').html('<i class="fa fa-check"></i> Simpan');
+        }
+      }
+    })
+  })
+
 })();

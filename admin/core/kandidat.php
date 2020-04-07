@@ -116,9 +116,16 @@ if($do == 'hapus'){
 </div>
 <div class="modal-footer">
   <input type="hidden" name="tambah" value="tambah">
-  <button type="submit" class="btn btn-primary btn-update-k"><i class="fa fa-check"></i> Update</button>
+  <button class="btn btn-primary" data-dismiss="modal">Batal</button>
+  <button type="submit" class="btn btn-success btn-update-k"><i class="fa fa-check"></i> Update</button>
 
   <script src="assets/js/upload.js"></script>
+  <script>
+  $(document).ready(function() {
+    $('#dataTables').DataTable();
+
+  });
+  </script>
 
   <?php
   }
@@ -146,8 +153,8 @@ if($do == 'hapus'){
           <div class="no-kandidat">'.($i+1).'</div>
           <div class="do mt-3">
             <a class="btn btn-success btn-mdl lihat" href="'.$adminHome.'hasil/kandidat/'.$idKandidat.'"><i class="fa fa-eye"></i> Suara</a>
-            <a class="btn btn-primary btn-mdl sunting" href="kandidat/edit/'.$idKandidat.'"><i class="fa fa-edit"></i> edit</a>
-            <a class="btn btn-danger btn-mdl hapus" href="kandidat/edit/'.$idKandidat.'"><i class="fa fa-trash-alt"></i> Hapus</a>
+            <a class="btn btn-primary btn-mdl tambahAksi" target-name="kandidat" target-aksi="edit" target-id="'.$idKandidat.'" target-init="'.$namaKandidat.'" href="kandidat/edit/'.$idKandidat.'"><i class="fa fa-edit"></i> edit</a>
+            <a class="btn btn-danger btn-mdl tambahAksi" target-name="kandidat" target-aksi="hapus" target-id="'.$idKandidat.'" target-init="'.$namaKandidat.'" href="kandidat/hapus/'.$idKandidat.'"><i class="fa fa-trash-alt"></i> Hapus</a>
           </div>
         </div>
       </div>
@@ -159,7 +166,8 @@ if($do == 'hapus'){
     List Kandidat
     <button class="btn ml-2 reset btn-mdl" disabled="disabled">Reset</button>
   </h3>
-  <button class="btn-mdl btn btn-outline-dark tambah-k"><i class="fa fa-plus"></i> Tambah Kandidat</button>
+  <button class="btn-mdl btn btn-outline-dark tambahAksi" target-name="kandidat" target-aksi="tambah"><i
+      class="fa fa-plus"></i> Tambah Kandidat</button>
 
   <div class="row">
     <?=$listKandidat;?>
