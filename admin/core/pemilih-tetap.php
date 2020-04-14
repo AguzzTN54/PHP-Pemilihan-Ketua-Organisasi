@@ -116,16 +116,28 @@ if($do == 'hapus'){
       if($submit['success']){
         $scsAdd[] = 1;
         $gglAdd[] = 0;
-        echo 'Berhasil menambahkan Pemilih <b>'.$randomName.'</b> <br>';
+        $msg .= '<div class="p-3 alert-success"> Berhasil menambahkan Pemilih <b>'.$randomName.'</b> </div>';
       }else{
         $scsAdd[] = 0;
         $gglAdd[] = 1;
-        echo 'Gagal menambahkan Pemilih <b>'.$randomName.'</b> "'.$submit['msg'].'" <br>';
+        $msg .= '<div class="p-3 alert-danger">Gagal menambahkan Pemilih <b>'.$randomName.'</b> "'.$submit['msg'].'" </div>';
       }
     }//akhir generate user otomatis
 
-    echo '<br>Berhasil ditambahkan => '.array_sum($scsAdd);
-    echo '<br> Gagal ditambahkan => '.array_sum($gglAdd);
+    if(array_sum($scsAdd) >0){
+      $arr['success'] = true;
+      $arr['msg'] = 'Berhasil menambahkan '.array_sum($scsAdd) .' pemilih tetap !';
+    }else{
+      $arr['success'] = false;
+      $arr['msg'] = 'Gagal Menambahkan pemilih tetap !';
+    }
+    $arr['msgs'] = $msg;
+    $arr['berhasil'] =  '<p class="p-3 m-0 text-success">Berhasil Ditambahkan => <b>'. array_sum($scsAdd).'</b></p>';
+    $arr['gagal']  = '<p class="p-3 m-0 text-danger"> Gagal Ditambahkan => <b>'.array_sum($gglAdd).'</b></p>';
+
+    header('Content-Type: Application/json');
+    echo json_encode($arr);
+
   }else{
 ?>
   <div class="form-group">
@@ -137,8 +149,8 @@ if($do == 'hapus'){
 <div class="modal-footer">
   <input type="hidden" name="generate" value="generate">
   <button class="btn btn-primary" data-dismiss="modal">Batal</button>
-  <button type="submit" class="btn btn-success btn-update-u" target-aksi="<?=$aksiURI?>"><i class="fa fa-check"></i>
-    Update</button>
+  <button type="submit" class="btn btn-success btn-update-u" target-aksi="generate"><i class="fa fa-check"></i>
+    Generate</button>
 
   <script src="assets/js/upload.js"></script>
 
@@ -176,7 +188,7 @@ if($do == 'hapus'){
   }
 }else{
 
-  if(@$_POST['hapusTerpilih']){
+  if(@isset($_POST['hapusTerpilih'])){
     
     $idTerpilih = @$_POST['idPemilih'];
     if(count($idTerpilih)>0){
@@ -194,11 +206,19 @@ if($do == 'hapus'){
           $gglHapus[] = 1;
         }
       }//Akhir Hapus
-      echo 'berhasil mengahpus '. array_sum($scsHapus);
+      if(array_sum($scsHapus)>0){
+        $arr['success'] = true;
+      }else{
+        $arr['success'] = false;
+      }
+      $arr['msg'] = 'Berhasil mengahapus <b>'. array_sum($scsHapus) .'</b> Data';
 
     }else{
-      echo 'tidak ada yang dihapus';
+      $arr['success'] = false;
+      $arr['msg'] = 'tidak ada data yang dihapus';
     }// Akhir Mass Hapus
+    header('Content-Type:Application/json');
+    echo json_encode($arr);
   }else{
     
     // echo '<form action"" method="post"><input type="submit" name="hapusTerpilih" value="Hapus Terpilih"><br>
@@ -235,42 +255,47 @@ if($do == 'hapus'){
     echo '</form>';
 ?>
 
-  <div class="wow fadeInUp" data-wow-duration="1.7s" data-wow-delay="1.2s">
-    <div class="d-flex align-items-center" style="justify-content:space-between;">
-      <h3 class="sub-title" style="font-weight:bold;">Daftar Pemilih Tetap <button class="btn ml-2 reset"
-          disabled="disabled">Reset</button></h3>
-    </div>
-    <div class="d-flex" style="justify-content:space-between">
-      <h5 class="sub-title">Total : <strong> <?=$user->jumlahUser?> </strong></h5>
-      <a href="<?=$adminHome?>app/pemilih-tetap/export" class="btn btn-outline-dark" style="margin:0 30px 0 10px">
-        <i class="fa fa-file-excel"></i> Export XLS
-      </a>
+  <form action="" method="post" id="userList">
+    <input type="hidden" name="hapusTerpilih">
+    <div class="wow fadeInUp" data-wow-duration="1.7s" data-wow-delay="1.2s">
+      <div class="d-flex align-items-center" style="justify-content:space-between;">
+        <h3 class="sub-title" style="font-weight:bold;">Daftar Pemilih Tetap <button class="btn ml-2 reset"
+            disabled="disabled">Reset</button></h3>
+      </div>
+      <div class="d-flex" style="justify-content:space-between">
+        <h5 class="sub-title">Total : <strong> <?=$user->jumlahUser?> </strong></h5>
+        <a href="<?=$adminHome?>app/pemilih-tetap/export" class="btn btn-outline-dark" style="margin:0 30px 0 10px">
+          <i class="fa fa-file-excel"></i> Export XLS
+        </a>
+      </div>
+
+      <button class="btn-mdl btn btn-outline-danger tambahAksi" idForm="form-update-u" target-name="pemilih-tetap"
+        target-aksi="hapus" target-id="terpilih" target-init="Terpilih"><i class="fa fa-trash-alt"></i> Hapus
+        Terpilih</button>
+      <button class="btn-mdl btn btn-outline-dark tambahAksi" idForm="form-update-u" target-name="pemilih-tetap"
+        target-aksi="tambah"><i class="fa fa-plus"></i> Tambah Pemilih</button>
+      <button class="btn-mdl btn btn-outline-dark tambahAksi" idForm="form-update-u" target-name="pemilih-tetap"
+        target-aksi="generate"><i class="fa fa-plus"></i> Generate
+        Pemilih</button>
     </div>
 
-    <button class="btn-mdl btn btn-outline-danger"><i class="fa fa-trash-alt"></i> Hapus Terpilih</button>
-    <button class="btn-mdl btn btn-outline-dark tambahAksi" idForm="form-update-u" target-name="pemilih-tetap"
-      target-aksi="tambah"><i class="fa fa-plus"></i> Tambah Pemilih</button>
-    <button class="btn-mdl btn btn-outline-dark tambahAksi" idForm="form-update-u" target-name="pemilih-tetap"
-      target-aksi="generate"><i class="fa fa-plus"></i> Generate
-      Pemilih</button>
-  </div>
-
-  <div class="bg-white shadow rounded p-3 mt-3 wow fadeInUp" data-wow-duration="1.7s" data-wow-delay="1.4s">
-    <table id="dataTables" class="table table-striped table-bordered table-hover">
-      <thead>
-        <tr>
-          <th>No</th>
-          <th>Nama</th>
-          <th>Username</th>
-          <th>Jumlah Login</th>
-          <th>Aksi</th>
-        </tr>
-      </thead>
-      <tbody>
-        <?=$tableField?>
-      </tbody>
-    </table>
-  </div>
+    <div class="bg-white shadow rounded p-3 mt-3 wow fadeInUp" data-wow-duration="1.7s" data-wow-delay="1.4s">
+      <table id="dataTables" class="table table-striped table-bordered table-hover">
+        <thead>
+          <tr>
+            <th>No</th>
+            <th>Nama</th>
+            <th>Username</th>
+            <th>Jumlah Login</th>
+            <th>Aksi</th>
+          </tr>
+        </thead>
+        <tbody>
+          <?=$tableField?>
+        </tbody>
+      </table>
+    </div>
+  </form>
 
   <script src="assets/js/kandidat.js"></script>
   <script>

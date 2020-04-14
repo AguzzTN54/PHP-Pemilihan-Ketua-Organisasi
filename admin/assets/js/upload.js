@@ -191,7 +191,6 @@ function removeUpload(hapus = null) {
     $('.btn-update-u').attr('disabled', 'disabled');
     $('.btn-update-u').html('<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Update');
     var aksi = $('.btn-update-u').attr('target-aksi');
-    console.log(aksi);
 
     $.ajax({
       url: 'app/pemilih-tetap/' + aksi,
@@ -203,7 +202,7 @@ function removeUpload(hapus = null) {
       processData: false,
       success: function (data) {
         if (data.success) {
-          notif('success', 'Berhasil menyimpan Perubahan');
+          notif('success', data.msg);
           $("#item-preload").fadeIn("slow", function () {
             $(this).show();
             $('.app').load('app/pemilih-tetap', function () {
@@ -212,15 +211,20 @@ function removeUpload(hapus = null) {
                   .delay(1000)
                   .fadeOut("slow", function () {
                     $(this).hide();
-                    $('#modal').modal('hide');
+                    if (aksi == 'generate') {
+                      var out = data.msgs + data.berhasil + data.gagal;
+                      $('.updateAksi').html(out);
+                    } else {
+                      $('#modal').modal('hide');
+                    }
                   });
               }
             })
           });
         } else {
-          notif('danger', 'Terjadi Kesalahan');
-          $('.simpan').removeAttr('disabled');
-          $('.simpan').html('<i class="fa fa-check"></i> Simpan');
+          notif('danger', data.msg);
+          $('.btn-update-u').removeAttr('disabled');
+          $('.btn-update-u').html('<i class="fa fa-check"></i> Simpan');
         }
       }
     })

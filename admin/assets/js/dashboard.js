@@ -7,21 +7,49 @@ $(document).ready(function () {
 
   $(".tugel-pilu").on("click", function (e) {
     e.preventDefault();
+    var data;
     if ($(this).hasClass("stop-pemilu")) {
-      $(this).html('<i class="fa fa-toggle-off"></i> Start');
-      $(this).addClass("start-pemilu");
-      $(this).removeClass("stop-pemilu");
-      $(".pemilu-on").html("<span>Pemilu Masih Berhenti</span>");
-      $(".pemilu-on").addClass("pemilu-off");
-      $(".pemilu-on").removeClass("pemilu-on");
+      data = 0
     } else {
-      $(this).html('<i class="fa fa-toggle-on"></i> Stop');
-      $(this).addClass("stop-pemilu");
-      $(this).removeClass("start-pemilu");
-      $(".pemilu-off").html("<span>Pemilu Sedang Berlangsung</span>");
-      $(".pemilu-off").addClass("pemilu-on");
-      $(".pemilu-off").removeClass("pemilu-off");
+      data = 1
     }
-    notif("success", "hore");
+
+    $.ajax({
+      url: 'app/settings',
+      type: 'POST',
+      dataType: 'json',
+      data: 'simpan&statusPemilu=' + data,
+      success: function (data) {
+        if (data.success) {
+          if ($('.tugel-pilu').hasClass("stop-pemilu")) {
+            $('.tugel-pilu').html('<i class="fa fa-toggle-off"></i> Start');
+            $('.tugel-pilu').addClass("start-pemilu");
+            $('.tugel-pilu').removeClass("stop-pemilu");
+            $(".pemilu-on").html("<span>Pemilu Masih Berhenti</span>");
+            $(".pemilu-on").addClass("pemilu-off");
+            $(".pemilu-on").removeClass("pemilu-on");
+            $('.pemilu-statusInfo').removeClass('text-success');
+            $('.pemilu-statusInfo').addClass('text-danger');
+            $('.pemilu-statusInfo').html('Pemilu Berhenti');
+          } else {
+            $('.tugel-pilu').html('<i class="fa fa-toggle-on"></i> Stop');
+            $('.tugel-pilu').addClass("stop-pemilu");
+            $('.tugel-pilu').removeClass("start-pemilu");
+            $(".pemilu-off").html("<span>Pemilu Sedang Berlangsung</span>");
+            $(".pemilu-off").addClass("pemilu-on");
+            $(".pemilu-off").removeClass("pemilu-off");
+            $('.pemilu-statusInfo').removeClass('text-danger');
+            $('.pemilu-statusInfo').addClass('text-success');
+            $('.pemilu-statusInfo').html('Sedang Pemilu');
+          }
+
+          notif("success", 'Success !');
+        } else {
+
+          notif("danger", 'Terjadi Kesalahan');
+        }
+
+      }
+    })
   });
 });

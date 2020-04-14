@@ -929,6 +929,7 @@ a {
   height: 100px;
   cursor: pointer;
   position: relative;
+  transition: ease-in-out .5s;
 }
 
 .image-dropping,

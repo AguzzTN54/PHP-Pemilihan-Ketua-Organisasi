@@ -10,10 +10,16 @@ if(!empty($page)){
   $GLOBALS['title'] = 'Admin Panel Pemilu Online';
 }
 
+if($pemilu){
+  $GLOBALS['sts'] = '<span class="text-success pemilu-statusInfo"> Sedang Pemilu</span>';
+}else{
+  $GLOBALS['sts'] = '<span class="text-danger pemilu-statusInfo"> Pemilu Berhenti</span>';
+}
+
 function endas($dashboard=false){
   if($dashboard==true){
     $logged = '<script>logged = true;</script>';
-    $navbar = '<nav class="navbar navbar-expand-lg navbar-light wow fadeInDown" style="visibility: visible; animation-name: fadeInDown;"><div class="container"><a class="navbar-brand" href="#">ADMIN PANEL</a><a class="nav-item nav-link text-center active">Status : <span class="text-success"> Sedang Pemilu</span></a><a class="nav-item nav-link" href="#"> Admin <i class="fa fa-user"></i></a></div></nav>';
+    $navbar = '<nav class="navbar navbar-expand-lg navbar-light wow fadeInDown" style="visibility: visible; animation-name: fadeInDown;"><div class="container"><a class="navbar-brand" href="#">ADMIN PANEL</a><a class="nav-item nav-link text-center active">Status : '.$GLOBALS['sts'].'</a><a class="nav-item nav-link" href="#"> Admin <i class="fa fa-user"></i></a></div></nav>';
     $icon = array('home','box-open', 'user-tie', 'users', 'cogs');
     
     $menu ='';

@@ -9,7 +9,7 @@ var animasi =
   close +
   '</div><div class="modal-body"></div></div>',
   navbar =
-  '<nav class="navbar navbar-expand-lg navbar-light wow fadeInDown"><div class="container"><a class="navbar-brand" href="#">ADMIN PANEL</a><a class="nav-item nav-link text-center active">Status : <span class="text-success"> Sedang Pemilu</span></a><a class="nav-item nav-link" href="#"> Admin <i class="fa fa-user"></i></a></div></nav>',
+  '<nav class="navbar navbar-expand-lg navbar-light wow fadeInDown"><div class="container"><a class="navbar-brand" href="#">ADMIN PANEL</a><a class="nav-item nav-link text-center active">Status : <span class="text-success pemilu-statusInfo"> Sedang Pemilu</span></a><a class="nav-item nav-link" href="#"> Admin <i class="fa fa-user"></i></a></div></nav>',
   notifikasi =
   '<div class="notifikasi"> <div role="alert" aria-live="assertive" aria-atomic="true" class="toast" data-delay="10000" data-autohide="true" data-animation="true"> </div> </div><div class="app"></div>',
   madeBy =
