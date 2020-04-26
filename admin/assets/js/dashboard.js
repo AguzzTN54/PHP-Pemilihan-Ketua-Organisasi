@@ -31,6 +31,7 @@ $(document).ready(function () {
             $('.pemilu-statusInfo').removeClass('text-success');
             $('.pemilu-statusInfo').addClass('text-danger');
             $('.pemilu-statusInfo').html('Pemilu Berhenti');
+            $('.ds, .reset').removeAttr('disabled')
           } else {
             $('.tugel-pilu').html('<i class="fa fa-toggle-on"></i> Stop');
             $('.tugel-pilu').addClass("stop-pemilu");
@@ -41,6 +42,7 @@ $(document).ready(function () {
             $('.pemilu-statusInfo').removeClass('text-danger');
             $('.pemilu-statusInfo').addClass('text-success');
             $('.pemilu-statusInfo').html('Sedang Pemilu');
+            $('.ds, .reset').attr('disabled', 'disabled')
           }
 
           notif("success", 'Success !');

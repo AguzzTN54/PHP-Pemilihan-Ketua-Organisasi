@@ -237,8 +237,6 @@ if($do == 'hapus'){
         $nama = $name;
       }
       
-      // echo '<br><br><input type="checkbox" value="'.$idUser.'" name="idPemilih[]">'.$idUser.'/'.$nama .'/'.$userName.'/'.$userPass.' <a href="'.$adminHome.'pemilih-tetap/edit/'.$idUser.'"> Edit </a> || <a href="'.$adminHome.'pemilih-tetap/hapus/'.$idUser.'"> Hapus</a>';
-
       $tableField .= '<tr>
         <td> <input type="checkbox" class="check" value="'.$idUser.'" name="idPemilih[]">
           '.($i+1).' </td>
@@ -260,7 +258,7 @@ if($do == 'hapus'){
     <div class="wow fadeInUp" data-wow-duration="1.7s" data-wow-delay="1.2s">
       <div class="d-flex align-items-center" style="justify-content:space-between;">
         <h3 class="sub-title" style="font-weight:bold;">Daftar Pemilih Tetap <button class="btn ml-2 reset"
-            disabled="disabled">Reset</button></h3>
+            <?=$disabled;?>>Reset</button></h3>
       </div>
       <div class="d-flex" style="justify-content:space-between">
         <h5 class="sub-title">Total : <strong> <?=$user->jumlahUser?> </strong></h5>

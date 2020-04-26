@@ -68,20 +68,29 @@ if($do == 'kandidat'){
     $foto = $kandidat->tampil[$i]['foto'];
     $suaraDidapat = $suara->kandidat($idKandidat,'hitung');
     if($suaraDidapat == $suara->cekPerolehan('tertinggi')){
-      $aktif = ' active';
-      $badge = '<div class="badge">
-      <img src="../images/badge.svg" alt="badge">
-    </div>';
+      if($pemilu){
+        $aktif = '';
+      $badge = '';
+      }else{
+        $aktif = ' active';
+        $badge = '<div class="badge">
+        <img src="../images/badge.svg" alt="badge">
+      </div>';
+      }
     }else{
       $aktif = '';
       $badge = '';
     }
 
-    $chartData[] = array(
-      'name' => explode(' ',$namaKandidat)[0],
-      'steps' => $suaraDidapat,
-      'img' => '../images/kandidat/'.$foto
-    );
+    if($pemilu){
+      $chartData[] = [];
+    }else{
+      $chartData[] = array(
+        'name' => explode(' ',$namaKandidat)[0],
+        'steps' => $suaraDidapat,
+        'img' => '../images/kandidat/'.$foto
+      );
+    }
     $perolehan .= '<div class="col-lg-3 col-sm-6 col-11 pt-4">
     <div class="hasil-item card p-2 rounded shadow bg-white text-center w-100'.$aktif.'">
       <span class="nomor-urut">'.($i+1).'</span>
@@ -96,12 +105,18 @@ if($do == 'kandidat'){
     </div>
   </div>';
   }
+
+  if($pemilu){
+echo '<div class="disabled-content">
+  <p>Hasil Pemilu tidak dapat diakses selama Pemilu Sedang Berlangsung</p>
+</div>';
+  }
 ?>
 
 <div class="d-flex align-items-center mb-5 wow fadeInUp" style="justify-content:space-between;" data-wow-duration="1.7s"
   data-wow-delay="1s">
-  <h3 class="sub-title" style="font-weight:bold;">hasil perolehan suara <button class="btn ml-2 reset"
-      disabled="disabled">Reset</button></h3>
+  <h3 class="sub-title" style="font-weight:bold;">hasil perolehan suara <button class="btn ml-2 reset">Reset</button>
+  </h3>
   <button class="btn btn-outline-dark print" style="margin:0 30px 0 10px" onclick="window.print()"> <i
       class="fa fa-print"></i>
     Print</button>

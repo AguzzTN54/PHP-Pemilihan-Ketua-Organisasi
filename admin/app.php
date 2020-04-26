@@ -2,6 +2,11 @@
 
 $core = './core';
 
+if($pemilu){
+  $disabled = ' disabled="disabled"';
+}else{
+  $disabled = '';
+}
 if(substr($_GET['uri'],-1) == '/'){
   header('location:'.$adminHome.$page);
   
@@ -145,7 +150,7 @@ if(substr($_GET['uri'],-1) == '/'){
 <div class="row mr-2 mt-4 wow fadeInUp" data-wow-duration="1.7s" data-wow-delay="1.2s">
   <div class="col-lg-8 col-sm-7 mb-2 pb-0">
     <div class="informasi-suara shadow bg-white rounded p-3" style="height:100%;">
-      <h3 class="sub-title pr-3 pl-3">Informasi Suara <button class="btn reset" disabled="disabled">Reset</button>
+      <h3 class="sub-title pr-3 pl-3">Informasi Suara <button class="btn reset" <?=$disabled?>>Reset</button>
       </h3>
       <div class="divider"></div>
       <div class="hasil row align-items-center justify-content-center text-center">
@@ -177,7 +182,9 @@ if(substr($_GET['uri'],-1) == '/'){
           <span class="info-title">Belum Login</span>
         </div>
       </div>
-      <button class="btn btn1" disabled="disabled">Cek Detail Perolehan Suara</button>
+      <button onclick="pushState('state1')" data-href="hasil" data-title="Hasil Perolehan Suara" id="state1"
+        class="btn btn1 ds" <?=$disabled?>>Cek Detail Perolehan
+        Suara</button>
 
       <div class="aksi d-flex align-items-center">
         <a href="#" class="aksi-item rounded">

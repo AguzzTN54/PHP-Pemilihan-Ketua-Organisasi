@@ -137,6 +137,13 @@ if($do == 'hapus'){
     $jurusan = $kandidat->tampil[$i]['jurusan'];
     $foto = $kandidat->tampil[$i]['foto'];
     $visi = $kandidat->tampil[$i]['visi'];
+    if($pemilu){
+      $sKan='';
+      $delKan = '';
+    }else{
+      $sKan = '<a class="btn btn-success btn-mdl lihat" href="'.$adminHome.'hasil/kandidat/'.$idKandidat.'"><i class="fa fa-eye"></i> Suara</a>';
+      $delKan = '<a class="btn btn-danger btn-mdl tambahAksi" target-name="kandidat" target-aksi="hapus" target-id="'.$idKandidat.'" target-init="'.$namaKandidat.'" href="kandidat/hapus/'.$idKandidat.'"><i class="fa fa-trash-alt"></i> Hapus</a>';
+    }
 
     $listKandidat .= '<div class="col-sm-6 mt-3">
       <div data-id="'.$idKandidat.'" class="rounded kandidat-item overflow-hidden row shadow wow fadeInUp" data-wow-duration="1.7s"
@@ -152,9 +159,9 @@ if($do == 'hapus'){
           </div>
           <div class="no-kandidat">'.($i+1).'</div>
           <div class="do mt-3">
-            <a class="btn btn-success btn-mdl lihat" href="'.$adminHome.'hasil/kandidat/'.$idKandidat.'"><i class="fa fa-eye"></i> Suara</a>
+            '.$sKan.'
             <a class="btn btn-primary btn-mdl tambahAksi" target-name="kandidat" target-aksi="edit" target-id="'.$idKandidat.'" target-init="'.$namaKandidat.'" href="kandidat/edit/'.$idKandidat.'"><i class="fa fa-edit"></i> edit</a>
-            <a class="btn btn-danger btn-mdl tambahAksi" target-name="kandidat" target-aksi="hapus" target-id="'.$idKandidat.'" target-init="'.$namaKandidat.'" href="kandidat/hapus/'.$idKandidat.'"><i class="fa fa-trash-alt"></i> Hapus</a>
+            '.$delKan.'
           </div>
         </div>
       </div>
@@ -164,9 +171,9 @@ if($do == 'hapus'){
 
   <h3 class="sub-title" style="font-weight:bold;justify-content: unset;">
     List Kandidat
-    <button class="btn ml-2 reset btn-mdl" disabled="disabled">Reset</button>
+    <button class="btn ml-2 reset btn-mdl" <?=$disabled?>>Reset</button>
   </h3>
-  <button class="btn-mdl btn btn-outline-dark tambahAksi" target-name="kandidat" target-aksi="tambah"><i
+  <button class="btn-mdl btn btn-outline-dark tambahAksi" target-name="kandidat" target-aksi="tambah" <?=$disabled?>><i
       class="fa fa-plus"></i> Tambah Kandidat</button>
 
   <div class="row">
