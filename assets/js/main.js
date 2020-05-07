@@ -74,7 +74,7 @@ function durasi() {
   $('.waktu').html(menit + ':' + detik);
 }
 
-function showNavbar() {
+function showNavbar(time) {
   logos = $(".brandTop")
     .attr("logo-url")
     .split(",");
@@ -84,7 +84,7 @@ function showNavbar() {
   var y =
     '<div class="logo wow fadeIn">' + ll.replace(undefined, "") + "</div>";
   var navKanan =
-    '<div class="collapse navbar-collapse wow fadeIn"> <div class="navbar-nav ml-auto"> <a class="nav-item nav-link active wkt"> Waktu Anda <span class="waktu">00:00</span> </a> <a id="logout" class="nav-item nav-link active" href="#" onclick="logOut()"><i class="fa fa-power-off"></i></a> </div> </div>';
+    '<div class="collapse navbar-collapse wow fadeIn"> <div class="navbar-nav ml-auto"> <a class="nav-item nav-link active wkt"> Waktu Anda <span class="waktu">' + time + '</span> </a> <a id="logout" class="nav-item nav-link active" href="#" onclick="logOut()"><i class="fa fa-power-off"></i></a> </div> </div>';
 
   $(".brandTop").html(y);
   $('.judul').addClass('text-center');
@@ -111,7 +111,8 @@ function berhasilLogin(txt, delayed) {
   }
   $(".login-alert").html(txt);
   if (delay < dl) {
-    showNavbar();
+    var waktu = $('.nav-kanan').attr('durasi-nyoblos');
+    showNavbar(waktu);
     $("#log").removeClass("container");
     $("#login").removeClass("col-md-5");
     $("#login").addClass("col-md-12");

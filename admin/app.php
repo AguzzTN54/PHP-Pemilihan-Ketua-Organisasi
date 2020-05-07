@@ -118,8 +118,11 @@ if(substr($_GET['uri'],-1) == '/'){
       'mencoblos' => $coblosCount,
       'info' => $info
     );
-    header('Content-Type: application/json');
+    header('Content-Type: text/event-stream');
+    header('Cache-Control: no-cache');
     echo json_encode($json);
+    flush();
+    sleep(30);
 
   }elseif($page!='dashboard'){
     header('location:'.$adminHome.'dashboard');

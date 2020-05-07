@@ -159,12 +159,12 @@ function pushState(elementID) {
 // RealTime Dashboard
 var devices;
 
-function refreshData() {
+function refreshData(target) {
   var output = "",
     showSid = '';
   sid = "";
   $.ajax({
-    url: "app/dashboard?date=" + new Date().getTime() + '&refresh',
+    url: target,
     dataType: "json",
     success: function (data) {
       $(".hitung").each(function () {
@@ -275,7 +275,7 @@ function refreshData() {
         $('.on-item').removeClass('h0');
       }, 1500)
 
-      console.clear();
+      // console.clear();
     } //Akhir Respon Sukses
   });
 }
@@ -285,9 +285,14 @@ function refreshData() {
 
 (function ($) {
   "use strict";
-  setInterval(function () {
-    refreshData();
-  }, 10000);
+
+  if (!!window.EventSource) {
+    const streamData = new EventSource('app/dashboard?refresh')
+    streamData.onopen = function (event) {
+      refreshData(streamData.url)
+    }
+  }
+
 
   window.onpopstate = function (e) {
     $('.toast').toast('hide');
