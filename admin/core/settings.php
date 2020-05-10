@@ -45,10 +45,17 @@ if(isset($_POST['simpan'])){
   }
   
   if(!isset($postAlamat)){
-    $pemilu =$postpemilu;
-    $menit = $postMenit;
-    $detik = $postDetik;
+    if(empty($postMenit) && empty($postDetik)){
+        $menit = $menit;
+        $detik = $detik;
+
+      }else{
+        $menit = $postMenit;
+        $detik = $postDetik;
+      }
+      $pemilu = $postpemilu;
   }
+  
   if(!empty($postJudul)){$judulPemilu = $postJudul;}
   if(!empty($postLogos)){}
   if(!empty($postAlamat)){$alamat = $postAlamat;}
@@ -183,8 +190,13 @@ if(isset($_POST['simpan'])){
         </div>
         <input type="hidden" name="simpan">
         <button type="submit" class="simpan btn btn-primary"><i class="fa fa-check"></i> Simpan</button>
-
       </form>
+
+      <div class="mt-5">
+        <h4>Pengaturan Pabrik</h4>
+        <i class="d-block">* Hapus Semua data termasuk data Kandidat, Pemilih Tetap dan Pengaturan</i>
+        <button class="btn btn-danger">Reset Aplikasi</button>
+      </div>
     </div>
 
     <div class="tab-pane fade" id="application-setting" role="tabpanel">

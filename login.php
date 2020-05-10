@@ -20,6 +20,18 @@ if($_POST['username']){
 
   <div id="row" class="row justify-content-center">
     <div id="login" class="col-md-5 bg-white pl-4 pr-4 pt-3 pb-4 login">
+      <?php
+    if(!$pemilu){
+      echo '<div class="d-flex justify-content-center align-items-center w-100 h-100" style="flex-direction:column">
+          <p style="font-weight:bold; font-size:30px" class="text-center m-2">Bilik Tutup, Hubungi Pengurus untuk info lebih lanjut</p>
+          <div class="logo mt-4">';
+          foreach($logos as $logo){
+            echo '<img src="'.str_replace('../','',$logo).'" alt="Logo">';
+          }
+      echo '</div>
+      </div>';
+    }else{
+    ?>
       <h3 class="text-center title">PEMILU ONLINE</h3>
       <hr>
       <ul class="steps">
@@ -54,12 +66,16 @@ if($_POST['username']){
         </form>
         <div class="result"></div>
         <div class="logo mt-4">
-          <img src="images/smak.png" alt="Sekolah">
-          <img src="images/MPK.png" alt="mpk">
-          <img src="images/EOS.png" alt="osis">
-          <img src="images/osis.jpg" alt="osis">
+          <?php 
+          foreach($logos as $logo){
+              echo '<img src="'.str_replace('../','',$logo).'" alt="Logo">';
+            }
+          ?>
         </div>
       </div>
+      <?php
+      }
+    ?>
     </div>
   </div>
 </div>

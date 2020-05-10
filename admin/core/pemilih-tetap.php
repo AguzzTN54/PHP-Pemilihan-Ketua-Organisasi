@@ -220,9 +220,6 @@ if($do == 'hapus'){
     header('Content-Type:Application/json');
     echo json_encode($arr);
   }else{
-    
-    // echo '<form action"" method="post"><input type="submit" name="hapusTerpilih" value="Hapus Terpilih"><br>
-    //       <a href="'.$adminHome.'pemilih-tetap/export/"> Export .XLS </a>';
 
     $tableField = '';
     for($i=0; $i<$user->jumlahUser; $i++){
@@ -268,7 +265,8 @@ if($do == 'hapus'){
       </div>
 
       <button class="btn-mdl btn btn-outline-danger tambahAksi" idForm="form-update-u" target-name="pemilih-tetap"
-        target-aksi="hapus" target-id="terpilih" target-init="Terpilih"><i class="fa fa-trash-alt"></i> Hapus
+        target-aksi="hapus" target-id="terpilih" target-init="Terpilih" <?=$disabled;?>><i class="fa fa-trash-alt"></i>
+        Hapus
         Terpilih</button>
       <button class="btn-mdl btn btn-outline-dark tambahAksi" idForm="form-update-u" target-name="pemilih-tetap"
         target-aksi="tambah"><i class="fa fa-plus"></i> Tambah Pemilih</button>
